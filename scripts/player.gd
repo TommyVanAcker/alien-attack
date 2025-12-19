@@ -2,7 +2,10 @@ extends CharacterBody2D
 
 @export var speed = 100
 
+@onready var rocket_container = $RocketContainer
+
 var rocket_scene = preload("res://scenes/rocket.tscn")
+
 
 func _physics_process(_delta: float) -> void:
 	var screensize  = get_viewport_rect().size
@@ -40,5 +43,6 @@ func _process(_delta: float) -> void:
 		
 func shoot():
 	var rocket_instance = rocket_scene.instantiate()
-	add_child(rocket_instance)
+	rocket_container.add_child(rocket_instance)
+	rocket_instance.global_position = global_position #sets the rocket position equal to the player position
 	rocket_instance.global_position.x += 80 #spawn the rocket furter on the x axis
