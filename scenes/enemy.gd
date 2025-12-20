@@ -1,9 +1,18 @@
 extends Area2D
 
+signal died
+
+
 @export var speed = 100
 
 func _process(delta: float) -> void:
 	global_position.x -= speed * delta
 
 func die() -> void:
+	queue_free()
+	emit_signal("died")
+
+
+func _on_body_entered(body: Node2D) -> void:
+	body.take_damage()
 	queue_free()

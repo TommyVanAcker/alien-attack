@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
-@export var speed = 100
+signal took_damage
 
+@export var speed = 100
 @onready var rocket_container = $RocketContainer
 
 var rocket_scene = preload("res://scenes/rocket.tscn")
@@ -46,3 +47,10 @@ func shoot():
 	rocket_container.add_child(rocket_instance)
 	rocket_instance.global_position = global_position #sets the rocket position equal to the player position
 	rocket_instance.global_position.x += 80 #spawn the rocket furter on the x axis
+
+func take_damage():
+	emit_signal("took_damage")
+	
+
+func die():
+	queue_free()
