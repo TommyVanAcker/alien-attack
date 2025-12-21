@@ -7,11 +7,13 @@ extends Node2D
 var score = 0
 
 func _on_deathzone_area_entered(area: Area2D) -> void:
-	area.die()
+	area.queue_free()
 
 func _on_player_took_damage() -> void:
 	lives -= 1
+	print('remaining lives: ' + str(lives))
 	if lives <= 0:
+		print('Game Over')
 		player.die()
 
 func _on_enemy_spawner_enemy_spawned(enemy_instance: Variant) -> void:
@@ -20,4 +22,5 @@ func _on_enemy_spawner_enemy_spawned(enemy_instance: Variant) -> void:
 
 func _on_enemy_died():
 	score += points
+	print('Score: ' + str(score))
 	
