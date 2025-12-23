@@ -1,0 +1,95 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxgi087m2ji8r"]
+
+[ext_resource type="Script" uid="uid://bslrm3p547d22" path="res://scripts/game_over_screen.gd" id="1_61w2s"]
+[ext_resource type="FontFile" uid="uid://cjsb11agvp6cl" path="res://assets/font/Kenney Blocks.ttf" id="1_iwahs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_61w2s"]
+bg_color = Color(0.34117648, 0.2, 0.05882353, 0.5411765)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_jw6e5"]
+font = ExtResource("1_iwahs")
+font_size = 32
+font_color = Color(0.73567015, 0.59188527, 0.09310169, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wa2qn"]
+font_size = 32
+font_color = Color(0.7669875, 0.41151622, 0, 1)
+
+[node name="Game Over Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_61w2s")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -275.0
+offset_top = -128.0
+offset_right = 275.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_61w2s")
+
+[node name="Game Over" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -102.0
+offset_right = 104.0
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_jw6e5")
+
+[node name="ScoreLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.5
+offset_top = -22.5
+offset_right = 87.5
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Score: 9999"
+label_settings = SubResource("LabelSettings_wa2qn")
+
+[node name="RetryBtn" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = 55.5
+offset_right = 52.0
+offset_bottom = 108.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5321547, 0.64104396, 0.4021801, 1)
+theme_override_font_sizes/font_size = 32
+text = "RETRY"
+
+[connection signal="pressed" from="Panel/RetryBtn" to="." method="_on_retry_btn_pressed"]
